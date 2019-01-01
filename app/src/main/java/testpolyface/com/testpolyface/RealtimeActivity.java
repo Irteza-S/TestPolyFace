@@ -73,6 +73,7 @@ public class RealtimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realtime);
 
+
         //EmotionTextView
         emotionTextView = (TextView) findViewById(R.id.activity_realtime_emotionTextView);
         counterView = (TextView) findViewById(R.id.activity_realtime_counter);
@@ -80,6 +81,7 @@ public class RealtimeActivity extends AppCompatActivity {
         cameraView = findViewById(R.id.activity_realtime_camera_view);
         graphicOverlay = findViewById(R.id.activity_realtime_graphic_overlay);
         swapImageButton = findViewById(R.id.activity_realtime_camera_swap);
+
 
         // Setting front camera
         cameraView.setFacing(Facing.FRONT);
@@ -135,6 +137,8 @@ public class RealtimeActivity extends AppCompatActivity {
 
                 int frameRotation = rotation / 90;
 
+
+
                 FirebaseVisionImageMetadata metadata = new FirebaseVisionImageMetadata.Builder()
                         .setFormat(FirebaseVisionImageMetadata.IMAGE_FORMAT_NV21)
                         .setWidth(size.getWidth())
@@ -144,9 +148,15 @@ public class RealtimeActivity extends AppCompatActivity {
 
                 FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromByteArray(data, metadata);
 
-                //Log.i("SIZE", "Height " + firebaseVisionImage.getBitmapForDebugging().getHeight() + " Width " + firebaseVisionImage.getBitmapForDebugging().getWidth());
                 int height = firebaseVisionImage.getBitmapForDebugging().getHeight() ;
                 int width = firebaseVisionImage.getBitmapForDebugging().getWidth();
+
+                Log.i("SIZE1", "Height " + frame.getSize().getHeight() + " Width " + frame.getSize().getWidth());
+                Log.i("SIZE1", "Height " + height + " Width " + width);
+                height = cameraView.getPictureSize().getHeight();
+                width = cameraView.getPictureSize().getWidth();
+                Log.i("SIZE1", "Height " + height + " Width " + width);
+                Log.i("SIZE1", "ss");
 
 
                 Bitmap bitmapdebug = firebaseVisionImage.getBitmapForDebugging();
