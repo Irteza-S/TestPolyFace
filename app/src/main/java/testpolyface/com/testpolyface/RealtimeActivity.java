@@ -192,14 +192,9 @@ public class RealtimeActivity extends AppCompatActivity {
                                         emotionTextView.clearComposingText();
                                         frameCounter = 0;
                                         computation.setActual(new FacialPoints(firebaseVisionFaces.get(0)));
-                                        List<Map.Entry<String, Double>> detectedEmotions = computation.compute();
+                                        String results = computation.compute();
                                         //TODO affichage des emotions
-                                        String emotions = "";
-                                        for(int i=0; i<detectedEmotions.size(); i++)
-                                        {
-                                            emotions = emotions + detectedEmotions.get(i).getKey() + ": " + detectedEmotions.get(i).getValue();
-                                        }
-                                        emotionTextView.setText(emotions);
+                                        emotionTextView.setText(results);
                                     }
 
                                     FirebaseVisionFaceContour contour = firebaseVisionFaces.get(0).getContour(FirebaseVisionFaceContour.ALL_POINTS);

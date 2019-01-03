@@ -3,6 +3,8 @@ package testpolyface.com.testpolyface;
 import android.content.Context;
 import android.util.Log;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -55,7 +57,7 @@ public class Computation
         this.actual = actual;
     }
 
-    public List<Map.Entry<String, Double>> compute()
+    public String compute()
     {
         //TODO
         isAU0orAU1();
@@ -79,7 +81,21 @@ public class Computation
         Log.i("Emotions", actionUnits.toString());
         Log.i("Emotions", list.toString());
         Log.i("Emotions", "");
-        return list;
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+        String toReturn = "";
+        toReturn = list.get(0).getKey() + " : ";
+        Double d = list.get(0).getValue();
+        toReturn = toReturn + df.format(d);
+        for (int i=1; i<list.size(); i++)
+        {
+            toReturn = toReturn + " " +list.get(i).getKey() + " : ";
+            d = list.get(i).getValue();
+            toReturn = toReturn + df.format(d);
+        }
+
+        return toReturn;
     }
 
 
