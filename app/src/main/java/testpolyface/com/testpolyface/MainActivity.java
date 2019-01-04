@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Go to caputre mode activity
+        // Go to "capture" mode activity
         caputreImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Go to realtime mode activity
+        // Go to "realtime" mode activity
         realtimeImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

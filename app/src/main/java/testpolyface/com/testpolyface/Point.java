@@ -1,5 +1,8 @@
 package testpolyface.com.testpolyface;
 
+/**
+ * Point class represent a 2D point
+ */
 public class Point
 {
     private double x;
@@ -11,10 +14,21 @@ public class Point
         this.y = Y;
     }
 
+    /**
+     * Compare current point with reference point on y axis when the reference point is located under the current point ( Ref.y > Actual.y)
+     * @param ref
+     * @return
+     */
     public double compareUpSideY(Point ref)
     {
         return (ref.getY()-y);
     }
+
+    /**
+     * Compare current point with reference point on y axis when the reference point is located above the current point ( Actual.y > Ref.y)
+     * @param ref
+     * @return
+     */
     public double compareDownSideY(Point ref)
     {
         return (y - ref.getY());
