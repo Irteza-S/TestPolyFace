@@ -27,18 +27,15 @@ import com.otaliastudios.cameraview.FrameProcessor;
 import com.otaliastudios.cameraview.Size;
 
 import java.util.List;
-import java.util.Map;
 
-import testpolyface.com.testpolyface.graphics.DotDotOverlay;
-import testpolyface.com.testpolyface.graphics.DotDotOverlayRef;
+import testpolyface.com.testpolyface.graphics.DotDotOverlayYellow;
+import testpolyface.com.testpolyface.graphics.DotDotOverlayRed;
 import testpolyface.com.testpolyface.graphics.GraphicOverlay;
 
 public class RealtimeActivity extends AppCompatActivity {
 
     private CameraView cameraView;
     private GraphicOverlay graphicOverlay;
-    private ImageButton swapImageButton;
-    private static Boolean isFacingFront;
 
 
     private FirebaseVisionFaceDetectorOptions options;
@@ -50,7 +47,7 @@ public class RealtimeActivity extends AppCompatActivity {
     private int frameCounter;
 
     private FirebaseVisionFaceContour contourRef;
-    private DotDotOverlayRef dotRef;
+    private DotDotOverlayRed dotRef;
     private TextView emotionTextView;
     private TextView counterView;
 
@@ -69,6 +66,12 @@ public class RealtimeActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realtime);
@@ -80,26 +83,10 @@ public class RealtimeActivity extends AppCompatActivity {
         // Init
         cameraView = findViewById(R.id.activity_realtime_camera_view);
         graphicOverlay = findViewById(R.id.activity_realtime_graphic_overlay);
-        swapImageButton = findViewById(R.id.activity_realtime_camera_swap);
 
 
         // Setting front camera
         cameraView.setFacing(Facing.FRONT);
-        isFacingFront = true;
-
-        // Swap button setup
-        swapImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isFacingFront == true) {
-                    cameraView.setFacing(Facing.BACK);
-                    isFacingFront = false;
-                } else {
-                    cameraView.setFacing(Facing.FRONT);
-                    isFacingFront = true;
-                }
-            }
-        });
 
         // Detection options
         options = new FirebaseVisionFaceDetectorOptions.Builder()
@@ -180,7 +167,7 @@ public class RealtimeActivity extends AppCompatActivity {
                                                 computation.setReference(new FacialPoints(firebaseVisionFaces.get(0)));
                                                 Toast.makeText(RealtimeActivity.this, "FaceContour referenced", Toast.LENGTH_SHORT).show();
                                                 contourRef = firebaseVisionFaces.get(0).getContour(FirebaseVisionFaceContour.ALL_POINTS);
-                                                dotRef = new DotDotOverlayRef(graphicOverlay, contourRef.getPoints());
+                                                dotRef = new DotDotOverlayRed(graphicOverlay, contourRef.getPoints());
                                             }
                                         }
                                     });
@@ -198,7 +185,7 @@ public class RealtimeActivity extends AppCompatActivity {
                                     }
 
                                     FirebaseVisionFaceContour contour = firebaseVisionFaces.get(0).getContour(FirebaseVisionFaceContour.ALL_POINTS);
-                                    DotDotOverlay dot = new DotDotOverlay(graphicOverlay, contour.getPoints());
+                                    DotDotOverlayYellow dot = new DotDotOverlayYellow(graphicOverlay, contour.getPoints());
                                     if(dotRef!=null)
                                     {
                                         graphicOverlay.add(dotRef);

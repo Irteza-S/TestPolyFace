@@ -1,55 +1,72 @@
 package testpolyface.com.testpolyface;
 
 import android.content.Intent;
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ImageView smileyImageView;
+    private ImageButton aboutImageButton, caputreImageButton, realtimeImageButton;
+    private AnimationDrawable frameAnimation;
 
-    ImageView bgapp, clover;
-    Animation bganim, clovernim;
-    LinearLayout textsplash, texthome, menus;
-    Animation frombottom;
-    ImageView camera, realTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        frombottom = AnimationUtils.loadAnimation(this, R.anim.frombottom);
+        // Init
+        smileyImageView = findViewById(R.id.activiy_main_smiley_face);
+        aboutImageButton = findViewById(R.id.activity_main_about_button);
+        caputreImageButton = findViewById(R.id.activity_main_picture_mode);
+        realtimeImageButton = findViewById(R.id.activity_main_realtime_mode);
 
-        camera = (ImageView) findViewById(R.id.camera);
-        realTime = (ImageView) findViewById(R.id.realtime);
+        // Smiley faces animation setup
+        smileyImageView.setImageDrawable(getDrawable(R.drawable.smiley_blink));
+        frameAnimation = (AnimationDrawable) smileyImageView.getDrawable();
+        frameAnimation.start();
 
-        realTime.setOnClickListener(new View.OnClickListener() {
+        // Go to "about" activity
+        aboutImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent aboutActivity = new Intent(MainActivity.this, RealtimeActivity.class);
+                Intent aboutActivity = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(aboutActivity);
             }
         });
 
+        // Go to caputre mode activity
+        caputreImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cameraActivity = new Intent(MainActivity.this, CameraActivity.class);
+                startActivity(cameraActivity);
+            }
+        });
 
-        bgapp = (ImageView) findViewById(R.id.bgapp);
-        clover = (ImageView) findViewById(R.id.clover);
-        textsplash = (LinearLayout) findViewById(R.id.textsplash);
-        texthome = (LinearLayout) findViewById(R.id.texthome);
-        menus = (LinearLayout) findViewById(R.id.menus);
+        // Go to realtime mode activity
+        realtimeImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent realtimeActivity = new Intent(MainActivity.this, RealtimeActivity.class);
+                startActivity(realtimeActivity);
+            }
+        });
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        frameAnimation.stop();
+    }
 
-        bgapp.animate().translationY(-2300).setDuration(800).setStartDelay(800);
-        clover.animate().translationY(-2250).setDuration(1200).setStartDelay(1000);
-        textsplash.animate().translationY(140).alpha(0).setDuration(800).setStartDelay(1000);
-
-        texthome.startAnimation(frombottom);
-        menus.startAnimation(frombottom);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        frameAnimation.start();
     }
 }

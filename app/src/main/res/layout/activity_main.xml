@@ -1,163 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
-    <ImageView
-        android:id="@+id/clover"
-        android:layout_width="300dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="28dp"
-        android:elevation="6dp"
-        android:src="@drawable/polytech"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/textsplash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:elevation="6dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Real time face recognition"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/texthome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
-        android:elevation="6dp"
-        android:gravity="left"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Mode"
-            android:textColor="#FFF"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="#FFF"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/menus"
-        android:layout_width="300dp"
-        android:layout_height="119dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:elevation="6dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981">
-
-        <LinearLayout
-            android:layout_width="334dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
-                android:orientation="vertical">
-
-
-                <ImageView
-                    android:id="@+id/camera"
-                    android:layout_width="120dp"
-                    android:layout_height="96dp"
-                    android:clickable="true"
-                    android:src="@drawable/camera" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Face Landmarks"
-                    android:textColor="#0E1843"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/realtime"
-                    android:layout_width="114dp"
-                    android:layout_height="92dp"
-                    android:layout_marginBottom="5dp"
-                    android:clickable="true"
-                    android:src="@drawable/facial" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recognition"
-
-                    android:textColor="#0E1843"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
+    tools:context=".MainActivity"
+    android:background="@color/main_activity_background" >
 
     <ImageView
-        android:id="@+id/bgapp"
-        android:layout_width="526dp"
-        android:layout_height="900dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="16dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/bgapp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.845"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/main_activity_polyface"/>
 
+    <ImageView
+        android:id="@+id/activiy_main_smiley_face"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="135dp"/>
 
-</android.support.constraint.ConstraintLayout>
+    <ImageButton
+        android:id="@+id/activity_main_about_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@null"
+        android:src="@drawable/main_activity_about" />
+
+    <FrameLayout
+        android:layout_width="250dp"
+        android:layout_height="135dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="175dp"
+        android:background="@drawable/about_activity_border">
+
+        <ImageButton
+            android:id="@+id/activity_main_picture_mode"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="top|left"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:background="@null"
+            android:src="@drawable/main_activity_camera"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/main_activity_picture" />
+
+        <ImageButton
+            android:id="@+id/activity_main_realtime_mode"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="15dp"
+            android:background="@null"
+            android:src="@drawable/main_activity_portrait" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/main_activity_realtime"/>
+
+    </FrameLayout>
+
+</FrameLayout>
