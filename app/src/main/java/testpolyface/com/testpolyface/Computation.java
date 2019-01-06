@@ -57,9 +57,13 @@ public class Computation
         this.actual = actual;
     }
 
+    /**
+     * Compute all AUs, then compute emotions from AUS, then order emotions by descending value, then return emotion's String
+     * @return
+     */
     public String compute()
     {
-        //TODO
+        //Compute AUs
         isAU0orAU1();
         isAU2orAU3();
         isAU4orAU5();
@@ -67,7 +71,9 @@ public class Computation
         isAU8orAU9();
         isAU10();
         isAU11();
+        //Compute emotions
         getEmotions();
+        //Order emotions
         Set<Map.Entry<String, Double>> set = emotions.entrySet();
         List<Map.Entry<String, Double>> list = new ArrayList<Map.Entry<String, Double>>(set);
         Collections.sort( list, new Comparator<Map.Entry<String, Double>>()
@@ -82,6 +88,7 @@ public class Computation
         Log.i("Emotions", list.toString());
         Log.i("Emotions", "");
 
+        //Return emotions as formated String
         DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.CEILING);
         String toReturn = "";
@@ -407,10 +414,12 @@ public class Computation
         }
     }
 
+    /**
+     * Get emotions from ActionUnits Array
+     */
     public void getEmotions()
     {
         double score = 0;
-        //TODO get emotions from AUs array
         //Happiness
         score = actionUnits.get("AU4") + actionUnits.get("AU11");
         if(actionUnits.get("AU0")==0)
@@ -434,7 +443,7 @@ public class Computation
         //Sadness
         score = actionUnits.get("AU5") + actionUnits.get("AU8");
         score = score / 2;
-       // emotions.put("Sadness", score);
+        // emotions.put("Sadness", score);
         //Anger
         score = actionUnits.get("AU1") + actionUnits.get("AU8") + actionUnits.get("AU10") + actionUnits.get("AU6");
         score = score / 4;
@@ -447,3 +456,5 @@ public class Computation
 
 
 }
+
+
